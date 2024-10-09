@@ -1,0 +1,92 @@
+{
+    "final_product": {
+        "name": "Koşu Ayakkabısı (Çift)",
+        "sku": "RS001",
+        "description": "Yüksek kalite koşu ayakkabısı (Çift)",
+        "components": [
+            {
+                "type": "Semi-Finished Product",
+                "name": "Koşu ayakkabısı üst kısmı (Çift)",
+                "sku": "UA001",
+                "description": "Önceden hazırlanmış koşu ayakkabısı üst kısmı (Çift)",
+                "unit": "çift",
+                "quantity": 1,
+                "components": [
+                    {
+                        "type": "Raw Material",
+                        "name": "File kumaş",
+                        "unit": "metrekare",
+                        "quantity": 0.6,
+                        "description": "Nefes alabilen file kumaş"
+                    },
+                    {
+                        "type": "Raw Material",
+                        "name": "Sentetik deri",
+                        "unit": "metrekare",
+                        "quantity": 0.3,
+                        "description": "Dayanıklı sentetik deri"
+                    },
+                    {
+                        "type": "Raw Material",
+                        "name": "Bağcık sistemi",
+                        "unit": "çift",
+                        "quantity": 1,
+                        "description": "Ayakkabı bağcık seti (Çift)"
+                    }
+                ]
+            },
+            {
+                "type": "Semi-Finished Product",
+                "name": "Koşu ayakkabısı tabanı (Çift)",
+                "sku": "SA001",
+                "description": "Dış ve orta dahil tüm koşu ayakkabısı tabanı (Çift)",
+                "unit": "çift",
+                "quantity": 1,
+                "components": [
+                    {
+                        "type": "Raw Material",
+                        "name": "Kauçuk dış taban",
+                        "unit": "metrekare",
+                        "quantity": 0.35,
+                        "description": "Kavrama için dayanıklı dış taban"
+                    },
+                    {
+                        "type": "Raw Material",
+                        "name": "EVA Köpük",
+                        "unit": "gram",
+                        "quantity": 300,
+                        "description": "Orta tabanda yastıklama sağlayan EVA köpük"
+                    }
+                ]
+            },
+            {
+                "type": "Raw Material",
+                "name": "Astar",
+                "unit": "çift",
+                "quantity": 1,
+                "description": "Ayakkabı iç kısmı için köpük iç taban (Çift)"
+            },
+            {
+                "type": "Raw Material",
+                "name": "Topuk dolgusu",
+                "unit": "çift",
+                "quantity": 1,
+                "description": "Denge ve destek için sert topuk dolgusu (Çift)"
+            },
+            {
+                "type": "Raw Material",
+                "name": "Burun koruması",
+                "unit": "çift",
+                "quantity": 1,
+                "description": "Koruma için güçlendirilmiş burun kısmı (Çift)"
+            },
+            {
+                "type": "Raw Material",
+                "name": "Tutkal",
+                "unit": "mililitre",
+                "quantity": 50,
+                "description": "Yapıştırma amaçlı endüstriyel tutkal"
+            }
+        ]
+    }
+}

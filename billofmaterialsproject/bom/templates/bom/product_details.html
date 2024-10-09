@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Product Details{% endblock %}
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-9">
+            <h1>Ürün detayları: {{product.name}}</h1>
+            <hr>
+            <h3>Ürün stok kodu: {{product.sku}}</h3>
+            <h3>Ürün açıklaması: {{product.description}}</h3>
+            <a href="">Güncelle</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

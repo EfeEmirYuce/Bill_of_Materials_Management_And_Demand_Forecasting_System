@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} BOM Details{% endblock %}
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-9">
+            <h2>{{ product.name }} ({{product.sku}}) için önümüzdeki ayın hammadde ihtiyaçları</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Hammadde</th>
+                        <th>Gerekli Miktar</th>
+                        <th>Birim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for material, details in material_needs.items %}
+                    <tr>
+                        <td>{{ material }}</td>
+                        <td>{{ details.quantity }}</td>
+                        <td>{{ details.unit }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} BOM Details{% endblock %}
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-9">
+            <h1>Ürün detayları: {{product.name}}</h1>
+            <h3>Ürün açıklaması: {{product.description}}</h3>
+            <hr>
+            <h2>{{product}} Ürün reçetesi</h2>
+            <ul>
+                {% for item in bom_items %}
+                    {%if item.raw_material%}
+                        <li>{{ item.raw_material.name }} {{ item.quantity }} {{ item.raw_material.unit }}</li>
+                    {%elif item.semi_finished_product%}
+                        <li>{{ item.semi_finished_product.name }} {{ item.quantity }} adet</li>   
+                    {%endif%}     
+                {% endfor %}
+            </ul>
+            <a href="">Güncelle</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
