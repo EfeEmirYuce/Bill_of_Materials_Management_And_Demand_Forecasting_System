@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-9">
             <h1>Ürün reçeteleri</h1>
-            <a href="">Yeni ekle</a>
+            <a href="{% url 'add_bom' %}">Yeni ekle</a>
             <hr>
             {%for bom in boms%}
             <li><a href="{% url "bom_detail" bom.final_product.sku %}">{{bom.final_product.name}} ({{bom.final_product.sku}})</a></li>

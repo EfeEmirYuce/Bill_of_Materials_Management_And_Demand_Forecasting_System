@@ -11,4 +11,7 @@ urlpatterns = [
     path("boms", views.boms, name= "boms"),
     path("boms/<str:product_sku>", views.bom_detail, name="bom_detail"),
     path('prediction/<str:product_sku>/', views.material_needs_view, name='material_needs'),
+    path('add-product/', views.add_product, name='add_product'),
+    path('add-raw-material/', views.add_raw_material, name='add_raw_material'),
+    path('add-bom/', views.add_bom, name='add_bom'),
 ]

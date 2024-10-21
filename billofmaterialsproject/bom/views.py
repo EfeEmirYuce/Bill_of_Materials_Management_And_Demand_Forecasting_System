@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from .forms import ProductForm, RawMaterialForm, BillOfMaterialsForm
 
 from bom.demand_prediction import sarima
 from bom.demand_prediction import bom_calculator
@@ -50,8 +51,38 @@ def bom_detail(request, product_sku):
 def material_needs_view(request, product_sku):
     product = Product.objects.get(sku=product_sku)
     
-    predicted_sales = sarima.calculate_sarima()
+    predicted_sales = 100 #sarima.calculate_sarima()
     
     material_needs = bom_calculator.calculate_material_needs_recursive(product, predicted_sales)
     
     return render(request, 'bom/material_needs.html', {'material_needs': material_needs, 'product': product})
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products')  # Ürün listesine yönlendirme
+    else:
+        form = ProductForm()
+    return render(request, 'bom/add_product.html', {'form': form})
+
+def add_raw_material(request):
+    if request.method == 'POST':
+        form = RawMaterialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('rawmaterials')  # Hammadde listesine yönlendirme
+    else:
+        form = RawMaterialForm()
+    return render(request, 'bom/add_raw_material.html', {'form': form})
+
+def add_bom(request):
+    if request.method == 'POST':
+        form = BillOfMaterialsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('boms')  # BOM listesine yönlendirme
+    else:
+        form = BillOfMaterialsForm()
+    return render(request, 'bom/add_bom.html', {'form': form})
