@@ -51,7 +51,7 @@ def bom_detail(request, product_sku):
 def material_needs_view(request, product_sku):
     product = Product.objects.get(sku=product_sku)
     
-    predicted_sales = 100 #sarima.calculate_sarima()
+    predicted_sales = sarima.calculate_sarima()
     
     material_needs = bom_calculator.calculate_material_needs_recursive(product, predicted_sales)
     
@@ -62,7 +62,7 @@ def add_product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('products')  # Ürün listesine yönlendirme
+            return redirect('products')
     else:
         form = ProductForm()
     return render(request, 'bom/add_product.html', {'form': form})
@@ -72,7 +72,7 @@ def add_raw_material(request):
         form = RawMaterialForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('rawmaterials')  # Hammadde listesine yönlendirme
+            return redirect('rawmaterials')
     else:
         form = RawMaterialForm()
     return render(request, 'bom/add_raw_material.html', {'form': form})
@@ -82,7 +82,7 @@ def add_bom(request):
         form = BillOfMaterialsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('boms')  # BOM listesine yönlendirme
+            return redirect('boms')
     else:
         form = BillOfMaterialsForm()
     return render(request, 'bom/add_bom.html', {'form': form})
