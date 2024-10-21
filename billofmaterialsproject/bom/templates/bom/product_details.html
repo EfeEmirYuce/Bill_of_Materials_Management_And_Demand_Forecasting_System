@@ -9,7 +9,7 @@
             <hr>
             <h3>Ürün stok kodu: {{product.sku}}</h3>
             <h3>Ürün açıklaması: {{product.description}}</h3>
-            <a href="">Güncelle</a>
+            <a href="{% url 'update_product' product.sku %}">Güncelle</a>
         </div>
     </div>
 </div>

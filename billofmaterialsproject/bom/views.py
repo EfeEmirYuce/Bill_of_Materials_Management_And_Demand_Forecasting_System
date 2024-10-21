@@ -86,3 +86,36 @@ def add_bom(request):
     else:
         form = BillOfMaterialsForm()
     return render(request, 'bom/add_bom.html', {'form': form})
+
+def update_product(request, product_sku):
+    product = get_object_or_404(Product, sku=product_sku)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('products') 
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'bom/update_product.html', {'form': form, 'product': product})
+
+def update_raw_material(request, slug):
+    raw_material = get_object_or_404(RawMaterial, slug=slug)
+    if request.method == 'POST':
+        form = RawMaterialForm(request.POST, instance=raw_material)
+        if form.is_valid():
+            form.save()
+            return redirect('rawmaterials') 
+    else:
+        form = RawMaterialForm(instance=raw_material)
+    return render(request, 'bom/update_raw_material.html', {'form': form, 'raw_material': raw_material})
+
+def update_bom(request, product_sku):
+    bom = get_object_or_404(Product, sku=product_sku)
+    if request.method == 'POST':
+        form = BillOfMaterialsForm(request.POST, instance=bom)
+        if form.is_valid():
+            form.save()
+            return redirect('boms') 
+    else:
+        form = BillOfMaterialsForm(instance=bom)
+    return render(request, 'bom/update_bom.html', {'form': form, 'bom': bom})

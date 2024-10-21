@@ -14,4 +14,7 @@ urlpatterns = [
     path('add-product/', views.add_product, name='add_product'),
     path('add-raw-material/', views.add_raw_material, name='add_raw_material'),
     path('add-bom/', views.add_bom, name='add_bom'),
+    path('update-product/<str:product_sku>/', views.update_product, name='update_product'),
+    path('update-raw-material/<slug:slug>/', views.update_raw_material, name='update_raw_material'),
+    path('update-bom/<str:product_sku>/', views.update_bom, name='update_bom'),
 ]

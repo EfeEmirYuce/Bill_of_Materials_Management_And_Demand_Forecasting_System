@@ -9,7 +9,7 @@
             <hr>
             <h3>Hammadde birimi: {{rawmaterial.unit}}</h3>
             <h3>Hammadde açıklaması: {{rawmaterial.description}}</h3>
-            <a href="">Güncelle</a>
+            <a href="{% url 'update_raw_material' rawmaterial.slug %}">Güncelle</a>
         </div>
     </div>
 </div>
