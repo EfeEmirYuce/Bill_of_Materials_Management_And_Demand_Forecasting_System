@@ -51,7 +51,7 @@ def bom_detail(request, product_sku):
 def material_needs_view(request, product_sku):
     product = Product.objects.get(sku=product_sku)
     
-    predicted_sales = sarima.calculate_sarima()
+    predicted_sales = 100 #sarima.calculate_sarima()
     
     material_needs = bom_calculator.calculate_material_needs_recursive(product, predicted_sales)
     
@@ -77,15 +77,45 @@ def add_raw_material(request):
         form = RawMaterialForm()
     return render(request, 'bom/add_raw_material.html', {'form': form})
 
+from django.shortcuts import render, redirect
+from .models import BillOfMaterials, Product, RawMaterial
+
 def add_bom(request):
+    products = Product.objects.all()
+    raw_materials = RawMaterial.objects.all()
+    
     if request.method == 'POST':
-        form = BillOfMaterialsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('boms')
-    else:
-        form = BillOfMaterialsForm()
-    return render(request, 'bom/add_bom.html', {'form': form})
+        final_product_id = request.POST['final_product']
+        final_product = Product.objects.get(id=final_product_id)
+        
+        # Dinamik olarak eklenen hammaddeler ve yarı bitmiş ürünleri işleme
+        item_counter = 0
+        while f'node_type_{item_counter}' in request.POST:
+            node_type = request.POST[f'node_type_{item_counter}']
+            node_name = request.POST[f'node_name_{item_counter}']
+            quantity = request.POST[f'quantity_{item_counter}']
+            
+            if node_type == 'raw_material':
+                raw_material = RawMaterial.objects.get(id=node_name)
+                BillOfMaterials.objects.create(
+                    final_product=final_product,
+                    raw_material=raw_material,
+                    quantity=quantity
+                )
+            else:
+                semi_finished_product = Product.objects.get(id=node_name)
+                BillOfMaterials.objects.create(
+                    final_product=final_product,
+                    semi_finished_product=semi_finished_product,
+                    quantity=quantity
+                )
+
+            item_counter += 1
+        
+        return redirect('boms')  # Reçetelerin listelendiği sayfaya yönlendir
+
+    return render(request, 'bom/add_bom.html', {'products': products, 'raw_materials': raw_materials})
+
 
 def update_product(request, product_sku):
     product = get_object_or_404(Product, sku=product_sku)
