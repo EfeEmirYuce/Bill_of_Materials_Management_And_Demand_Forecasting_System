@@ -22,4 +22,5 @@ This project is a web-based application designed to manage product recipes (Bill
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap
 - **Forecasting Model:** SARIMA (using statsmodels)
 
-  For more information check: Ürün Reçetesi ve Talep Tahminlemesi ile Stok Yönetimi Optimizasyonu.pdf
+
+ For more information check: Ürün Reçetesi ve Talep Tahminlemesi ile Stok Yönetimi Optimizasyonu.pdf
